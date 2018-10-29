@@ -2,7 +2,7 @@ var express = require('express');
 const app = express();
 const port = process.env.PORT != null ? process.env.PORT : 8081;
 
-app.get('api/', function (req, res) {
+app.get('/api', function (req, res) {
    res.send('Hello world');
 });
 
