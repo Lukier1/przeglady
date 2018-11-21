@@ -39,21 +39,17 @@
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "Promise": true,
     "sails": true,
-    "_": true,
-    "async": true,
-
-    // Models:
-    "User": true
-    
-    // …and any others.
+    "_": true
+    // …and any others (e.g. `"Organization": true`)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   },
 
   "rules": {
+    "block-scoped-var":             ["error"],
     "callback-return":              ["error", ["done", "proceed", "next", "onwards", "callback", "cb"]],
     "camelcase":                    ["warn", {"properties":"always"}],
     "comma-style":                  ["warn", "last"],
-    "curly":                        ["error"],
+    "curly":                        ["warn"],
     "eqeqeq":                       ["error", "always"],
     "eol-last":                     ["warn"],
     "handle-callback-err":          ["error"],
@@ -77,7 +73,11 @@
     "no-return-assign":             ["error", "always"],
     "no-sequences":                 ["error"],
     "no-trailing-spaces":           ["warn"],
-    "no-undef":                     ["error"],
+    "no-undef":                     ["off"],
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // ^^Note: If this "no-undef" rule is enabled (set to `["error"]`), then all model globals
+    // (e.g. `"Organization": true`) should be included above under "globals".
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "no-unexpected-multiline":      ["warn"],
     "no-unreachable":               ["warn"],
     "no-unused-vars":               ["warn", {"caughtErrors":"all", "caughtErrorsIgnorePattern": "^unused($|[A-Z].*$)", "argsIgnorePattern": "^unused($|[A-Z].*$)", "varsIgnorePattern": "^unused($|[A-Z].*$)" }],
@@ -85,7 +85,7 @@
     "one-var":                      ["warn", "never"],
     "prefer-arrow-callback":        ["warn", {"allowNamedFunctions":true}],
     "quotes":                       ["warn", "single", {"avoidEscape":false, "allowTemplateLiterals":true}],
-    "semi":                         ["error", "always"],
+    "semi":                         ["warn", "always"],
     "semi-spacing":                 ["warn", {"before":false, "after":true}],
     "semi-style":                   ["warn", "last"]
   }
